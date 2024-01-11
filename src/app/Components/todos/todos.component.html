@@ -1,0 +1,23 @@
+<div class="container">
+  <h2 class="text-center my-3">Todo List By Kunal</h2>
+  <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
+  <h4>Your Todos</h4>
+  <p *ngIf="todos.length == 0; else elseBlock">There are no Todos</p>
+  <ng-template #elseBlock>
+    <div class="row">
+      <div
+        class="col-sm-6 col-md-6 col-lg-3"
+        *ngFor="let todo of todos; index as i"
+      >
+        <div class="card my-3 p-3 border border-danger rounded">
+          <app-todo-item
+            [todo]="todo"
+            [i]="i"
+            (todoDelete)="deleteTodo($event)"
+            (todoMarkAsDone)="markAsDoneTodo($event)"
+          ></app-todo-item>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
